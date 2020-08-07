@@ -2,10 +2,10 @@
 
 Following [EmSevenSegment](https://github.com/Electromed/EmSevenSegment).
 
-## 1.Circuit
+## Circuit
   - HEF4094B:
   - ULN2803:
 
-## 2. Software
+## Software
 
 Arduino with 2.3inch 7-segment display using shift registers.
