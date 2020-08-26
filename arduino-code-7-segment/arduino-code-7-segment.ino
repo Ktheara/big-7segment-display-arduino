@@ -1,36 +1,31 @@
-/*
-  EmSevenSegment Library - blink
 
- Demonstrates the use a 4094 shift register IC to 
- control an array of Seven Segment Display.
- 
- This sketch runs a code that print digits 1234 on a 
- common cathode seven segment display.
+#include<SR7SEGNM.h>
 
-  The circuit:
- * 4094 Data pin to digital pin 4
- * 4094 Clock pin to digital pin 3
- * 4094 Strobe pin to digital pin 2
+const char MAX_DIGITS = 2;
 
- Library originally released 21 May 2017
- by Suhrid Srivastava
 
- This example code is in the public domain. 
- 
-*/
+SR7SEGNM segments4094(3,2,4,MAX_DIGITS);
 
-// include the library code:
-
-#include <EmSevenSegment.h>
-
-EmSevenSegment disp(4,'C',4,3,2);
+int digitBuffer[MAX_DIGITS]={0};
+int x=0, y=0;
 
 void setup(){
+  int i=0;
+  segments4094.begin();
+  delay(1000);  
+  
 }
 
-//=============================================================//
 void loop(){
-  disp.test();
-  disp.print(1234);
-  delay(1000);
+  for(int i=0; i<10; i++){
+    for(int j=0; j<10; j++){
+      digitBuffer[0]=i;
+      digitBuffer[1]=j;
+      segments4094.updateSegments(digitBuffer);
+      delay(2000);
+    }
+  }
+  delay(3000);
+  segments4094.offAllSegments();
+  delay(3000);
 }
